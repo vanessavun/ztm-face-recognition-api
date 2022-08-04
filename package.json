@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,8 @@
     "knex": "^2.2.0",
     "node-fetch": "^3.2.10",
     "nodemon": "^2.0.19",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "serve": "^14.0.1",
+    "heroku-postbuild": "npm run build"
   }
 }
