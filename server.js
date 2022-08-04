@@ -3,10 +3,10 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt-nodejs');
 const cors = require('cors');
 const knex = require('knex');
-const db = knex({
+const db = knex({ 
     client: 'pg',
     connection: {
-      host : '127.0.0.1', //localhost
+      host : '127.0.0.1',
       port: 5432,
       user : 'postgres',
       password : 'test',
@@ -14,6 +14,7 @@ const db = knex({
     }
   });
 
+//Controllers
 const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
@@ -21,7 +22,7 @@ const image = require('./controllers/image');
 
 db.select('*')
     .from('users')
-    .then(data => { //no need JSON
+    .then(data => {
     //console.log(data);
 });
 
@@ -33,20 +34,22 @@ app.use(cors());
 app.get('/', (req, res) => {
     res.send("Success")
 })
-
+//SIGNIN (post, pw over HTTP body)
 app.post('/signin', (req, res) => { signin.handleSignIn(req, res, db, bcrypt) });
+
+//REGISTER (post, add to database)
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) });
+
+//PROFILE (get user)
 app.get('/profile/:id', (req, res, db) => { profile.handleProfileGet(req, res, db) });
-app.put('/image', (req, res, db) => { image.handleImage(req, res, db) });
+
+//IMAGE (put, update count on user profile)
+app.put('/image', (req, res) => { image.handleImage(req, res, db) });
+
+//IMAGEURL (post, handle Face Recognition API from backend)
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) });
 
 app.listen(3000, () => {
     console.log('app is running on port 3000');
 })
 
-/*
-/--> res = this is working
-/signin --> POST = res success or fail (password over HTTPS body)
-/register --> POST add to database/variable with new user = new user
-/profile/:userId --> GET = user
-/image --> PUT (update count on user profile) --> user
-*/
