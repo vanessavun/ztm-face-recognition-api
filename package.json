@@ -7,8 +7,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "react-scripts start",
-    "start": "serve -s build",
+    "start": "node server.js",
     "start:dev": "nodemon server.js",
     "heroku-postbuild": "npm run build"
   },
