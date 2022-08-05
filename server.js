@@ -10,7 +10,7 @@ const db = knex({
     ssl: { rejectUnauthorized: false }
   }
 });
-/*
+/* my local host
 const db = knex({ 
     client: 'pg',
     connection: {
@@ -20,7 +20,7 @@ const db = knex({
       database : 'smart-brain'
     }
   });
-  */
+*/
 
 //Controllers
 const register = require('./controllers/register');
