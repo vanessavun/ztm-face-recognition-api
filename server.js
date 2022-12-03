@@ -5,8 +5,15 @@ const cors = require('cors');
 const knex = require('knex');
 const db = knex({ 
   client: 'pg',
-  connection: process.env.DATABASE_URL,
-  searchPath: ['knex', 'public']
+  connection: {
+    connectionString : process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+    host: 'dpg-ce59noun6mpk2bj7tt1g-a',
+    port: 5432,
+    user: 'face_recognition_database_q1rl_user',
+    password: process.env.DATABASE_PW,
+    database: 'face_recognition_database_q1rl'
+  }
 });
 
 //Controllers
