@@ -7,12 +7,11 @@ const db = knex({
   client: 'pg',
   connection: {
     connectionString : process.env.DATABASE_URL,
-    ssl: { rejectUnauthorized: false },
-    host: 'dpg-ce59noun6mpk2bj7tt1g-a.oregon-postgres.render.com',
+    host: process.env.DATABASE_HOST,
     port: 5432,
-    user: 'face_recognition_database_q1rl_user',
+    user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PW,
-    database: 'face_recognition_database_q1rl'
+    database: process.env.DATABASE_DB
   }
 });
 

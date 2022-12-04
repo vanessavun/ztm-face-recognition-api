@@ -30,7 +30,6 @@ const handleApiCall = (req, res) => {
                 }
             )
         .then(response => {
-            // console.log('response', response.data)
             res.json(response.data)
 
         })
@@ -39,7 +38,6 @@ const handleApiCall = (req, res) => {
 
 const handleImage = (req, res, db) => {
     const { id } = req.body;
-    // console.log(db)
     db('users')
         .where('id', '=', id)
         .increment('entries', 1)
